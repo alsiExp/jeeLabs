@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test page for DataReading in Servlets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="ReadFile" method="POST">
+    <p> Введите в поле ниже имя для выборки из файла:<br>
+        <input type="text" name="selectname"><br>
+        <input type="checkbox" name="equalfind" value="true" checked>
+        Если отмечено, то ищем полное совпадение имени;
+        если неотмечено, то ищем частичное совпадение имени.<Br>
+    </p>
+    <input type="submit" value="Найти" />
+</form>
+
+</body>
+</html>
