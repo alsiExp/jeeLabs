@@ -24,6 +24,21 @@
                         <input type="text" class="form-control" id="search_name" placeholder="Имя">
                     </div>
                     <button id="search_ok" type="button" class="btn btn-default">Искать</button>
+                    <div>
+                        <table id="human-list" class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Имя</th>
+                                <th>Индекс</th>
+                                <th>Город</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
 
             </div>
             <div class="col-md-6">
@@ -36,6 +51,17 @@
 <!-- javascript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
+    var humanTable = $("#human-list").find("tbody");
+    function printHuman(el) {
+        humanTable.append('<tr>' +
+                '<th scope="row">' + el.id + '</th>' +
+                '<td>' + el.name + '</td>' +
+                '<td>' + el.zipCode + '</td>' +
+                '<td>' + el.city + '</td>' +
+                '</tr>' +
+                '<tr>');
+    }
+    
     $("#search_ok").click(function () {
         var name = $("#search_name").val();
         $.post("/api/human/search",
@@ -44,20 +70,14 @@
                 }
         ).done(function (data ) {
             console.log(data);
+            humanTable.empty();
+            data.forEach(function (el, i, data) {
+                printHuman(el);
+            });
         })
 
     });
 
-    /*
-     for js client:
-     $.post(
-     "/api/human/search",
-     {
-     param1: "param1",
-     param2: 2
-     }
-     );
-     */
 </script>
 </body>
 </html>
